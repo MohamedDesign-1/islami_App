@@ -4,6 +4,7 @@ import 'package:islamiapp/style/app_color.dart';
 
 class MyThemeApp {
   static final ThemeData lightTheme = ThemeData(
+      primaryColor: AppColor.primaryLightColor,
       scaffoldBackgroundColor: Colors.transparent,
       dividerColor: AppColor.divider,
       appBarTheme: AppBarTheme(
@@ -26,5 +27,9 @@ class MyThemeApp {
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
-      ));
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: AppColor.primaryLightColor,
+          selectedItemColor: AppColor.bottomIconNavStyle,
+          type: BottomNavigationBarType.shifting));
 }
