@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islamiapp/style/my_theme_app.dart';
-import 'package:islamiapp/widgets/bottom_navbar.dart';
+import 'package:islamiapp/widgets/item_sura_name.dart';
 
 class QuranTab extends StatelessWidget {
   QuranTab({Key? key}) : super(key: key);
@@ -295,10 +295,9 @@ class QuranTab extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          child: Text(
-                            suraList[index],
-                            style: MyThemeApp.lightTheme.textTheme.bodyMedium,
-                            textAlign: TextAlign.center,
+                          child: ItemSuraName(
+                            suraList: suraList[index],
+                            index: index,
                           ),
                         ),
                       ],

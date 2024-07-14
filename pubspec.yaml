@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.0
   google_fonts: ^6.2.1
+  dio: ^5.5.0+1
+  just_audio: ^0.9.38
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +65,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/files/
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
