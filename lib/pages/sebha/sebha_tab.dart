@@ -127,4 +127,3 @@ class _SebhaTabState extends State<SebhaTab> {
 }
 
 /// Step one = if user pressed on Images = counter++ and limit 33
-/// Step Two = List tasebhat = [ سبحان الله , الحمدالله ,  الله اكبر , لا اله الله وحده لا شريك له الملك وله الحمد ]

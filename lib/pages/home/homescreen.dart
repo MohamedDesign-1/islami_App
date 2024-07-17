@@ -3,6 +3,7 @@ import 'package:islamiapp/pages/hadeth/hadeth_tab.dart';
 import 'package:islamiapp/pages/quran/quran_tab.dart';
 import 'package:islamiapp/pages/radio/radio_tab.dart';
 import 'package:islamiapp/pages/sebha/sebha_tab.dart';
+import 'package:islamiapp/pages/settings/settings_tab.dart';
 
 class Homescreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
@@ -21,6 +22,7 @@ class _HomescreenState extends State<Homescreen> {
     HadethTab(),
     SebhaTab(),
     RadioTab(),
+    SettingsTab(),
   ];
 
   @override
@@ -60,6 +62,12 @@ class _HomescreenState extends State<Homescreen> {
                     size: 32,
                   ),
                   label: 'راديو'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.settings,
+                    size: 32,
+                  ),
+                  label: 'الاعدادات'),
             ],
           ),
         ),
