@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamiapp/models/radio_model.dart';
 import 'package:islamiapp/service/radio_service.dart';
 import 'package:islamiapp/style/my_theme_app.dart';
@@ -76,7 +77,7 @@ class _RadioTabState extends State<RadioTab> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-              'إسلامي',
+              AppLocalizations.of(context)!.app_title,
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             backgroundColor: Colors.transparent,

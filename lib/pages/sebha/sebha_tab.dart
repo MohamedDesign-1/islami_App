@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../style/app_color.dart';
 import '../../style/my_theme_app.dart';
@@ -10,13 +11,13 @@ class SebhaTab extends StatefulWidget {
 
 class _SebhaTabState extends State<SebhaTab> {
   double turns = 0.0;
-
   static int counter = 0;
-
   String tasebhat = 'سبحان الله';
 
   @override
   Widget build(BuildContext context) {
+    String tasebhat = AppLocalizations.of(context)!.subhan_allah;
+
     return Stack(
       children: [
         Container(
@@ -28,44 +29,54 @@ class _SebhaTabState extends State<SebhaTab> {
           ),
         ),
         Scaffold(
+          backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-              'اسلامي',
+              AppLocalizations.of(context)!.app_title,
               style: MyThemeApp.lightTheme.textTheme.headlineLarge,
             ),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Column(
+              Stack(
+                alignment: Alignment.center,
                 children: [
-                  Stack(children: [
-                    Image.asset('assets/images/head_sebha_logo.png'),
-                    AnimatedRotation(
+                  Positioned(
+                    top: -1,
+                    child: Image.asset(
+                      'assets/images/head_sebha_logo.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    // ضبط هذه القيمة حسب الحاجة
+                    child: AnimatedRotation(
                       turns: turns,
                       duration: const Duration(seconds: 1),
                       child: InkWell(
-                          onTap: () {
+                        onTap: () {
+                          checkTasbeh();
+                          setState(() {
+                            counter++;
+                            turns += 0.25;
                             checkTasbeh();
-                            setState(() {
-                              counter++;
-                              turns += 0.25;
-                              checkTasbeh();
-                            });
-                          },
-                          child:
-                              Image.asset('assets/images/body_sebha_logo.png')),
-                    )
-                  ]),
-                  SizedBox(
-                    height: 48,
+                          });
+                        },
+                        child: Image.asset('assets/images/body_sebha_logo.png'),
+                      ),
+                    ),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 48,
               ),
               Column(
                 children: [
                   Text(
-                    'عدد التسبيحات',
+                    AppLocalizations.of(context)!.sebha_number,
                     style: MyThemeApp.lightTheme.textTheme.titleLarge,
                   ),
                   SizedBox(
@@ -109,21 +120,19 @@ class _SebhaTabState extends State<SebhaTab> {
 
   void checkTasbeh() {
     if (counter == 1) {
-      tasebhat = 'سبحان الله';
+      tasebhat = AppLocalizations.of(context)!.subhan_allah;
     }
     if (counter == 33) {
-      tasebhat = 'الحمدالله';
+      tasebhat = AppLocalizations.of(context)!.alhamdulillah;
     }
     if (counter == 66) {
-      tasebhat = 'الله اكبر';
+      tasebhat = AppLocalizations.of(context)!.allahu_akbar;
     }
     if (counter == 99) {
-      tasebhat = 'لا اله الا الله وحده لا شريك له  له الملك وله الحمد';
+      tasebhat = AppLocalizations.of(context)!.la_ilaha_illa_allah;
     }
     if (counter == 100) {
       counter = 0;
     }
   }
 }
-
-/// Step one = if user pressed on Images = counter++ and limit 33

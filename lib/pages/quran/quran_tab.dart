@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamiapp/style/my_theme_app.dart';
 import 'package:islamiapp/widgets/item_sura_name.dart';
 
@@ -252,7 +253,7 @@ class QuranTab extends StatelessWidget {
       Scaffold(
         appBar: AppBar(
           title: Text(
-            'اسلامي',
+            AppLocalizations.of(context)!.app_title,
             style: MyThemeApp.lightTheme.textTheme.headlineLarge,
           ),
         ),
@@ -267,11 +268,11 @@ class QuranTab extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  'عدد الايات',
+                  AppLocalizations.of(context)!.number_ayah,
                   style: MyThemeApp.lightTheme.textTheme.headlineMedium,
                 ),
                 Text(
-                  'اسم السورة',
+                  AppLocalizations.of(context)!.sura_name,
                   style: MyThemeApp.lightTheme.textTheme.headlineMedium,
                 ),
               ],

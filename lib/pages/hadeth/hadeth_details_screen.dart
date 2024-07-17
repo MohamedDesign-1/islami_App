@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamiapp/pages/hadeth/hadeth_tab.dart';
 import 'package:islamiapp/style/app_color.dart';
 import 'package:islamiapp/widgets/item_hadeth.dart';
@@ -29,7 +30,7 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
       Scaffold(
           appBar: AppBar(
             title: Text(
-              'اسلامي',
+              AppLocalizations.of(context)!.app_title,
               style: MyThemeApp.lightTheme.textTheme.headlineLarge,
             ),
           ),
