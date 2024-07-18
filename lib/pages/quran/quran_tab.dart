@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamiapp/style/my_theme_app.dart';
 import 'package:islamiapp/widgets/item_sura_name.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/app_config.dart';
 
 class QuranTab extends StatelessWidget {
   QuranTab({Key? key}) : super(key: key);
@@ -241,43 +245,64 @@ class QuranTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(children: [
-      Container(
-          width: double.infinity,
+      provider.isDarkMode()
+          ? Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset(
+                'assets/images/bg_dark.png',
+                fit: BoxFit.fill,
+              ),
+            )
+          : Container(
+              width: double.infinity,
           height: double.infinity,
           child: Image.asset(
             'assets/images/background.png',
             fit: BoxFit.fill,
-          )),
+              ),
+            ),
       Scaffold(
         appBar: AppBar(
           title: Text(
-            'اسلامي',
-            style: MyThemeApp.lightTheme.textTheme.headlineLarge,
+            AppLocalizations.of(context)!.app_title,
+            style: provider.isDarkMode()
+                ? MyThemeApp.darkTheme.textTheme.headlineLarge
+                : MyThemeApp.lightTheme.textTheme.headlineLarge,
           ),
         ),
         body: Column(
           children: [
             Image.asset('assets/images/quran_screen_logo.png'),
             Divider(
-              color: MyThemeApp.lightTheme.dividerColor,
+              color: provider.isDarkMode()
+                  ? MyThemeApp.darkTheme.dividerColor
+                  : MyThemeApp.lightTheme.dividerColor,
               thickness: 2,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  'عدد الايات',
-                  style: MyThemeApp.lightTheme.textTheme.headlineMedium,
+                  AppLocalizations.of(context)!.number_ayah,
+                  style: provider.isDarkMode()
+                      ? MyThemeApp.darkTheme.textTheme.headlineMedium
+                      : MyThemeApp.lightTheme.textTheme.headlineMedium,
                 ),
                 Text(
-                  'اسم السورة',
-                  style: MyThemeApp.lightTheme.textTheme.headlineMedium,
+                  AppLocalizations.of(context)!.sura_name,
+                  style: provider.isDarkMode()
+                      ? MyThemeApp.darkTheme.textTheme.headlineMedium
+                      : MyThemeApp.lightTheme.textTheme.headlineMedium,
                 ),
               ],
             ),
             Divider(
-              color: MyThemeApp.lightTheme.dividerColor,
+              color: provider.isDarkMode()
+                  ? MyThemeApp.darkTheme.dividerColor
+                  : MyThemeApp.lightTheme.dividerColor,
               thickness: 2,
             ),
             Expanded(
@@ -290,7 +315,9 @@ class QuranTab extends StatelessWidget {
                         Expanded(
                           child: Text(
                             '${suraAyatCounts[index]}',
-                            style: MyThemeApp.lightTheme.textTheme.bodyMedium,
+                            style: provider.isDarkMode()
+                                ? MyThemeApp.darkTheme.textTheme.bodyMedium
+                                : MyThemeApp.lightTheme.textTheme.bodyMedium,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -305,7 +332,9 @@ class QuranTab extends StatelessWidget {
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
-                      color: MyThemeApp.lightTheme.dividerColor,
+                      color: provider.isDarkMode()
+                          ? MyThemeApp.darkTheme.dividerColor
+                          : MyThemeApp.lightTheme.dividerColor,
                       thickness: 2,
                     );
                   },

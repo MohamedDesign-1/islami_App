@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islamiapp/pages/quran/sura_details_screen.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/app_config.dart';
 import '../style/my_theme_app.dart';
 
 class ItemSuraName extends StatelessWidget {
@@ -11,6 +13,7 @@ class ItemSuraName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(SuraDetailsScreen.routeName,
@@ -18,7 +21,9 @@ class ItemSuraName extends StatelessWidget {
       },
       child: Text(
         suraList,
-        style: MyThemeApp.lightTheme.textTheme.bodyMedium,
+        style: provider.isDarkMode()
+            ? MyThemeApp.darkTheme.textTheme.bodyMedium
+            : MyThemeApp.lightTheme.textTheme.bodyMedium,
         textAlign: TextAlign.center,
       ),
     );

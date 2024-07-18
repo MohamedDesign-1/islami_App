@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamiapp/pages/hadeth/hadeth_tab.dart';
 import 'package:islamiapp/pages/quran/quran_tab.dart';
 import 'package:islamiapp/pages/radio/radio_tab.dart';
 import 'package:islamiapp/pages/sebha/sebha_tab.dart';
+import 'package:islamiapp/pages/settings/settings_tab.dart';
 
 class Homescreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
@@ -21,6 +23,7 @@ class _HomescreenState extends State<Homescreen> {
     HadethTab(),
     SebhaTab(),
     RadioTab(),
+    SettingsTab(),
   ];
 
   @override
@@ -41,25 +44,31 @@ class _HomescreenState extends State<Homescreen> {
                     AssetImage('assets/images/icon_quran.png'),
                     size: 32,
                   ),
-                  label: 'القرأن'),
+                  label: AppLocalizations.of(context)!.quran),
               BottomNavigationBarItem(
                   icon: ImageIcon(
                     AssetImage('assets/images/icon_hadeth.png'),
                     size: 32,
                   ),
-                  label: 'حديث'),
+                  label: AppLocalizations.of(context)!.hadeth),
               BottomNavigationBarItem(
                   icon: ImageIcon(
                     AssetImage('assets/images/icon_sebha.png'),
                     size: 32,
                   ),
-                  label: 'سبحه'),
+                  label: AppLocalizations.of(context)!.sebha),
               BottomNavigationBarItem(
                   icon: ImageIcon(
                     AssetImage('assets/images/icon_radio.png'),
                     size: 32,
                   ),
-                  label: 'راديو'),
+                  label: AppLocalizations.of(context)!.radio),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.settings,
+                    size: 32,
+                  ),
+                  label: AppLocalizations.of(context)!.settings),
             ],
           ),
         ),

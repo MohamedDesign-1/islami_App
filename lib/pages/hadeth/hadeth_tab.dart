@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamiapp/pages/hadeth/item_hadeth_name.dart';
 import 'package:islamiapp/style/app_color.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/app_config.dart';
 import '../../style/my_theme_app.dart';
 
 class HadethTab extends StatefulWidget {
@@ -15,13 +18,23 @@ class _HadethTabState extends State<HadethTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     if (ahadethList.isEmpty) {
       loadHadeth();
     }
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
+        provider.isDarkMode()
+            ? Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: Image.asset(
+                  'assets/images/bg_dark.png',
+                  fit: BoxFit.fill,
+                ),
+              )
+            : Container(
+                width: double.infinity,
           height: double.infinity,
           child: Image.asset(
             'assets/images/background.png',
@@ -31,23 +44,31 @@ class _HadethTabState extends State<HadethTab> {
         Scaffold(
           appBar: AppBar(
             title: Text(
-              'اسلامي',
-              style: MyThemeApp.lightTheme.textTheme.headlineLarge,
+              AppLocalizations.of(context)!.app_title,
+              style: provider.isDarkMode()
+                  ? MyThemeApp.darkTheme.textTheme.headlineLarge
+                  : MyThemeApp.lightTheme.textTheme.headlineLarge,
             ),
           ),
           body: Column(
             children: [
               Image.asset('assets/images/hadeth_logo.png'),
               Divider(
-                color: MyThemeApp.lightTheme.dividerColor,
+                color: provider.isDarkMode()
+                    ? MyThemeApp.darkTheme.dividerColor
+                    : MyThemeApp.lightTheme.dividerColor,
                 thickness: 2,
               ),
               Text(
-                'اسم الحديث',
-                style: MyThemeApp.lightTheme.textTheme.headlineMedium,
+                AppLocalizations.of(context)!.hadeth_name,
+                style: provider.isDarkMode()
+                    ? MyThemeApp.darkTheme.textTheme.headlineMedium
+                    : MyThemeApp.lightTheme.textTheme.headlineMedium,
               ),
               Divider(
-                color: MyThemeApp.lightTheme.dividerColor,
+                color: provider.isDarkMode()
+                    ? MyThemeApp.darkTheme.dividerColor
+                    : MyThemeApp.lightTheme.dividerColor,
                 thickness: 2,
               ),
               ahadethList.isEmpty
@@ -73,7 +94,9 @@ class _HadethTabState extends State<HadethTab> {
                         },
                         separatorBuilder: (BuildContext context, int index) {
                           return Divider(
-                            color: MyThemeApp.lightTheme.dividerColor,
+                            color: provider.isDarkMode()
+                                ? MyThemeApp.darkTheme.dividerColor
+                                : MyThemeApp.lightTheme.dividerColor,
                             thickness: 2,
                           );
                         },

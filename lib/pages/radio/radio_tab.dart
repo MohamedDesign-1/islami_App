@@ -1,8 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamiapp/models/radio_model.dart';
 import 'package:islamiapp/service/radio_service.dart';
 import 'package:islamiapp/style/my_theme_app.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/app_config.dart';
 
 class RadioTab extends StatefulWidget {
   @override
@@ -62,21 +66,31 @@ class _RadioTabState extends State<RadioTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
+        provider.isDarkMode()
+            ? Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: Image.asset(
+                  'assets/images/bg_dark.png',
+                  fit: BoxFit.fill,
+                ),
+              )
+            : Container(
+                width: double.infinity,
           height: double.infinity,
           child: Image.asset(
             'assets/images/background.png',
             fit: BoxFit.fill,
           ),
-        ),
+              ),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-              'إسلامي',
+              AppLocalizations.of(context)!.app_title,
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             backgroundColor: Colors.transparent,

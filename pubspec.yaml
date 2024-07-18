@@ -39,6 +39,10 @@ dependencies:
   google_fonts: ^6.2.1
   dio: ^5.5.0+1
   just_audio: ^0.9.38
+  provider: ^6.1.2
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -54,8 +58,12 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+
 # The following section is specific to Flutter packages.
 flutter:
+
+  generate: true # Add this line
+
   uses-material-design: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -94,6 +102,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
 
 
 flutter_native_splash:
