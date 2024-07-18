@@ -15,5 +15,8 @@
   "la_ilaha_illa_allah": "La ilaha illa Allah, wahdahu la sharika lah, lahul mulk wa lahul hamd",
   "language": "Language",
   "arabic": "Arabic",
-  "english": "English"
+  "english": "English",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark"
 }

@@ -3,7 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamiapp/pages/hadeth/hadeth_tab.dart';
 import 'package:islamiapp/style/app_color.dart';
 import 'package:islamiapp/widgets/item_hadeth.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/app_config.dart';
 import '../../style/my_theme_app.dart';
 
 class HadethDetailsScreen extends StatefulWidget {
@@ -18,20 +20,33 @@ class HadethDetailsScreen extends StatefulWidget {
 class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as Hadeth;
     return Stack(children: [
-      Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: Image.asset(
-            'assets/images/background.png',
-            fit: BoxFit.fill,
-          )),
+      provider.isDarkMode()
+          ? Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset(
+                'assets/images/bg_dark.png',
+                fit: BoxFit.fill,
+              ),
+            )
+          : Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset(
+                'assets/images/background.png',
+                fit: BoxFit.fill,
+              ),
+            ),
       Scaffold(
           appBar: AppBar(
             title: Text(
               AppLocalizations.of(context)!.app_title,
-              style: MyThemeApp.lightTheme.textTheme.headlineLarge,
+              style: provider.isDarkMode()
+                  ? MyThemeApp.darkTheme.textTheme.headlineLarge
+                  : MyThemeApp.lightTheme.textTheme.headlineLarge,
             ),
           ),
           body: Column(
@@ -47,10 +62,14 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
                     Center(
                         child: Text(
                       args.title,
-                      style: MyThemeApp.lightTheme.textTheme.titleLarge,
+                      style: provider.isDarkMode()
+                          ? MyThemeApp.darkTheme.textTheme.headlineLarge
+                          : MyThemeApp.lightTheme.textTheme.headlineLarge,
                     )),
                     Divider(
-                      color: MyThemeApp.lightTheme.dividerColor,
+                      color: provider.isDarkMode()
+                          ? MyThemeApp.darkTheme.dividerColor
+                          : MyThemeApp.lightTheme.dividerColor,
                       thickness: 2,
                     ),
                   ],

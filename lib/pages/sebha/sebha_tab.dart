@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/app_config.dart';
 import '../../style/app_color.dart';
 import '../../style/my_theme_app.dart';
 
@@ -16,12 +18,21 @@ class _SebhaTabState extends State<SebhaTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     String tasebhat = AppLocalizations.of(context)!.subhan_allah;
-
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
+        provider.isDarkMode()
+            ? Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: Image.asset(
+                  'assets/images/bg_dark.png',
+                  fit: BoxFit.fill,
+                ),
+              )
+            : Container(
+                width: double.infinity,
           height: double.infinity,
           child: Image.asset(
             'assets/images/background.png',
@@ -33,7 +44,9 @@ class _SebhaTabState extends State<SebhaTab> {
           appBar: AppBar(
             title: Text(
               AppLocalizations.of(context)!.app_title,
-              style: MyThemeApp.lightTheme.textTheme.headlineLarge,
+              style: provider.isDarkMode()
+                  ? MyThemeApp.darkTheme.textTheme.headlineLarge
+                  : MyThemeApp.lightTheme.textTheme.headlineLarge,
             ),
           ),
           body: Column(
@@ -44,14 +57,18 @@ class _SebhaTabState extends State<SebhaTab> {
                 children: [
                   Positioned(
                     top: -1,
-                    child: Image.asset(
-                      'assets/images/head_sebha_logo.png',
-                      fit: BoxFit.contain,
+                    child: provider.isDarkMode()
+                        ? Image.asset(
+                            'assets/images/head_sebha_dark.png',
+                            fit: BoxFit.contain,
+                          )
+                        : Image.asset(
+                            'assets/images/head_sebha_logo.png',
+                            fit: BoxFit.contain,
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 50),
-                    // ضبط هذه القيمة حسب الحاجة
                     child: AnimatedRotation(
                       turns: turns,
                       duration: const Duration(seconds: 1),
@@ -64,7 +81,9 @@ class _SebhaTabState extends State<SebhaTab> {
                             checkTasbeh();
                           });
                         },
-                        child: Image.asset('assets/images/body_sebha_logo.png'),
+                        child: provider.isDarkMode()
+                            ? Image.asset('assets/images/body_sebha_dark.png')
+                            : Image.asset('assets/images/body_sebha_logo.png'),
                       ),
                     ),
                   ),
@@ -77,7 +96,9 @@ class _SebhaTabState extends State<SebhaTab> {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.sebha_number,
-                    style: MyThemeApp.lightTheme.textTheme.titleLarge,
+                    style: provider.isDarkMode()
+                        ? MyThemeApp.darkTheme.textTheme.titleLarge
+                        : MyThemeApp.lightTheme.textTheme.titleLarge,
                   ),
                   SizedBox(
                     height: 24,
@@ -86,7 +107,9 @@ class _SebhaTabState extends State<SebhaTab> {
                     width: 64,
                     height: 64,
                     decoration: BoxDecoration(
-                        color: AppColor.primaryLightColor,
+                        color: provider.isDarkMode()
+                            ? AppColor.bottomDarkIconNavStyle
+                            : AppColor.primaryLightColor,
                         borderRadius: BorderRadius.circular(8)),
                     child: Center(
                         child: Text(
@@ -101,7 +124,9 @@ class _SebhaTabState extends State<SebhaTab> {
                     height: 64,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: MyThemeApp.lightTheme.primaryColor,
+                      color: provider.isDarkMode()
+                          ? AppColor.bottomDarkIconNavStyle
+                          : AppColor.primaryLightColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
